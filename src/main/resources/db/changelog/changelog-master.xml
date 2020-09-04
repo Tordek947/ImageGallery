@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+	<changeSet id="Fri Sep 04 12:02:39 EEST 2020-1"
+		author="Startled Frog (generated)">
+		<createTable tableName="image_metadata">
+			<column autoIncrement="true" type="BIGINT" name="PK">
+				<constraints primaryKey="true" />
+			</column>
+			<column autoIncrement="false" type="VARCHAR(64)" name="author">
+				<constraints />
+			</column>
+			<column autoIncrement="false" type="VARCHAR(64)" name="camera">
+				<constraints />
+			</column>
+			<column autoIncrement="false" type="VARCHAR(64)"
+				name="full_picture_url">
+				<constraints nullable="false" />
+			</column>
+			<column autoIncrement="false" type="VARCHAR(128)"
+				name="hash_tags">
+				<constraints />
+			</column>
+			<column autoIncrement="false" type="BIGINT" name="image_PK">
+				<constraints nullable="false" unique="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="Fri Sep 04 12:02:39 EEST 2020-3"
+		author="Startled Frog (generated)">
+		<createTable tableName="image">
+			<column autoIncrement="true" type="BIGINT" name="PK">
+				<constraints primaryKey="true" />
+			</column>
+			<column autoIncrement="false" type="VARCHAR(64)" name="id">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column autoIncrement="false" type="VARCHAR(64)"
+				name="cropped_picture_url">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="Fri Sep 04 12:02:39 EEST 2020-7"
+		author="Startled Frog (generated)">
+		<createIndex indexName="fk_image_metadata_image_PK_idx"
+			tableName="image_metadata">
+			<column name="image_PK" />
+		</createIndex>
+	</changeSet>
+	<changeSet id="Fri Sep 04 12:02:39 EEST 2020-10"
+		author="Startled Frog (generated)">
+		<addForeignKeyConstraint
+			baseColumnNames="image_PK" baseTableName="image_metadata"
+			constraintName="fk_image_metadata_image_image_PK" deferrable="false"
+			initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT"
+			referencedColumnNames="PK" referencedTableName="image"
+			validate="true" />
+	</changeSet>
+</databaseChangeLog>
